@@ -3,6 +3,8 @@ package com.marcos.todo.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.marcos.todo.domain.dto.TodoDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,10 @@ import com.marcos.todo.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TodoService {
-
 	@Autowired
 	private TodoRepository repository;
+	@Autowired
+	private ModelMapper mapper;
 
 	public Todo findById(Integer id) {
 		Optional<Todo> obj = repository.findById(id);
@@ -37,21 +40,24 @@ public class TodoService {
 		return list;
 	}
 
-	public Todo create(Todo obj) {
+	public Todo create(TodoDto obj) {
 		obj.setId(null);
-		return repository.save(obj);
+		return repository.save(mapper.map(obj, Todo.class));
 	}
 
 	public void delete(Integer id) {
 		repository.deleteById(id);
 	}
 
-	public Todo update(Integer id, Todo obj) {
+	public Todo update(Integer id, TodoDto obj) {
 		Todo newObj = findById(id);
-		newObj.setTitulo(obj.getTitulo());
+		newObj.setNomeDoCliente(obj.getNomeDoCliente());
 		newObj.setDataParaFinalizar(obj.getDataParaFinalizar());
-		newObj.setDescricao(obj.getDescricao());
-		newObj.setOrdem(obj.getOrdem());
+		newObj.setDescricaoDoProduto(obj.getDescricaoDoProduto());
+		newObj.setCodigoDaPeca(obj.getCodigoDaPeca());
+		newObj.setNumeroDoPedido(obj.getNumeroDoPedido());
+		newObj.setStatus(obj.getStatus());
+		newObj.setOrdemDeProducao(obj.getOrdemDeProducao());
 		newObj.setFinalizado(obj.getFinalizado());
 		return repository.save(newObj);
 	}

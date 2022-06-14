@@ -19,10 +19,11 @@ public class DBService {
 	public void instanciaBaseDeDados() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		Todo t1 = new Todo(null, "Arruela Especial", "Cliente X. Obs: Ag Têmpera", "Teste", sdf.parse("25/03/2022"), false);
-		Todo t2 = new Todo(null, "Biela Simétrica", "Cliente Y. Obs: Ag Têmpera", "Teste", sdf.parse("22/03/2021"), true);
+		Todo t1 = new Todo(1, "Marcos Ruiz", "Arruela Especial", 123, 999, "Em desenvolvimento", "001", sdf.parse("25/03/2022"), false);
+
+		Todo t2 = new Todo(2, "Giulianna Fernandes", "Biela Simétrica", 1234, 1000, "Em desenvolvimento", "002", sdf.parse("22/03/2021"), false);
 
 		todoRepository.saveAll(Arrays.asList(t1, t2));
-	} 
+	}
 	
 }

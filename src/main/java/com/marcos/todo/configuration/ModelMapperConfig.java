@@ -1,4 +1,4 @@
-package br.com.dicasdeumdev.api.config;
+package com.marcos.todo.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

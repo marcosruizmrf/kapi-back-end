@@ -2,7 +2,10 @@ package com.marcos.todo.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.marcos.todo.domain.dto.TodoDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,49 +26,53 @@ import com.marcos.todo.services.TodoService;
 @RestController
 @RequestMapping(value = "/todos")
 public class TodoResource {
+	private static final String ID = "/{id}";
+
+	@Autowired
+	private ModelMapper mapper;
 
 	@Autowired
 	private TodoService service;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Todo> findById(@PathVariable Integer id) {
+	public ResponseEntity<TodoDto> findById(@PathVariable Integer id) {
 		Todo obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(mapper.map(service.findById(id), TodoDto.class));
 	}
 
 	@GetMapping(value = "/open")
-	public ResponseEntity<List<Todo>> listOpen() {
-		List<Todo> list = service.findAllOpen();
+	public ResponseEntity<List<TodoDto>> listOpen() {
+		List<TodoDto> list = service.findAllOpen().stream().map(x -> mapper.map(x, TodoDto.class)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping(value = "/close")
-	public ResponseEntity<List<Todo>> listClose() {
-		List<Todo> list = service.findAllClose();
+	public ResponseEntity<List<TodoDto>> listClose() {
+		List<TodoDto> list = service.findAllClose().stream().map(x -> mapper.map(x, TodoDto.class)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Todo>> listAll() {
-		List<Todo> list = service.findAll();
+	public ResponseEntity<List<TodoDto>> listAll() {
+		List<TodoDto> list = service.findAll().stream().map(x -> mapper.map(x, TodoDto.class)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(list);
 	}
 
 	@PostMapping
-	public ResponseEntity<Todo> create(@RequestBody Todo obj) {
-		obj = service.create(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+	public ResponseEntity<TodoDto> create(@RequestBody TodoDto obj) {
+		URI uri = ServletUriComponentsBuilder
+				.fromCurrentRequest().path(ID).buildAndExpand(service.create(obj).getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+	public ResponseEntity<TodoDto> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
      
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Todo> update(@PathVariable Integer id, @RequestBody Todo obj) {
+	public ResponseEntity<Todo> update(@PathVariable Integer id, @RequestBody TodoDto obj) {
 		Todo newObj = service.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
