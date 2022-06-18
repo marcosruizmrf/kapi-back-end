@@ -1,7 +1,6 @@
 ![image](https://user-images.githubusercontent.com/77700262/143724421-da38f4a5-c5fe-4fd1-a75a-007144d47f91.png)
 
 # KAPI
-Tool reports management
 
 Projeto Integrador em Computação II - 2022
 
@@ -42,8 +41,11 @@ Aplicação web direcionada para auxiliar o departamento de Desenvolvimento de P
 1 - Conecta-se ao servidor usando um navegador. Para abrir a interface é necessário inserir a URL que foi configurada durante o desenvolvimento do projeto. “http://localhost:8080/h2-console”.
 
 2 - Configuração no arquivo do banco de dados do Sistema:
-spring.h2.console.enabled=true
-spring.h2.console.path=/h2-console
-spring.datasource.url=jdbc:h2:~/test;MODE=MySQL;DATABASE_TO_LOWER=TRUE
-spring.datasource.driver-class-name=org.h2.Driver
-spring.datasource.username=sa
+
+| Database                             |  H2                                               |
+| ------------------------------------ | ------------------------------------------------- |
+|  spring.h2.console.enabled           |  true                                             |
+|  spring.h2.console.path              |  /h2-console                                      |
+|  spring.datasource.url               |  jdbc:h2:~/test;MODE=MySQL;DATABASE_TO_LOWER=TRUE |
+|  spring.datasource.driver-class-name |  org.h2.Driver                                    |
+|  spring.datasource.username          |  sa                                               |
