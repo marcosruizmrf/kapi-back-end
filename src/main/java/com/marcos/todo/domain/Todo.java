@@ -20,9 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Todo implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -30,12 +28,11 @@ public class Todo implements Serializable {
 	private String descricaoDoProduto;
 	private Integer codigoDaPeca;
 	private Integer numeroDoPedido;
+	private String responsavel;
 	private String status;
 	private String ordemDeProducao;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataParaFinalizar;
 	private Boolean finalizado = false;
-	
-
 }

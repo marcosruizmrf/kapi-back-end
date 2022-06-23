@@ -17,6 +17,7 @@ public class TodoDto  {
 	private String descricaoDoProduto;
 	private Integer codigoDaPeca;
 	private Integer numeroDoPedido;
+	private String responsavel;
 	private String status;
 	private String ordemDeProducao;
 	@JsonFormat(pattern = "dd/MM/yyyy")

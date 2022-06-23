@@ -31,6 +31,8 @@ class TodoResourceTest {
     private static final String DESCRICAODOPRODUTO = "Tablet";
     private static final Integer CODIGODAPECA = 321;
     private static final Integer NUMERODOPEDIDO = 123;
+
+    private static final String RESPONSAVEL = "André";
     private static final String STATUS = "Em desenvolvimento";
     private static final String ORDEMDEPRODUCAO = "01";
 
@@ -73,6 +75,7 @@ class TodoResourceTest {
         assertEquals(DESCRICAODOPRODUTO, response.getBody().getDescricaoDoProduto());
         assertEquals(CODIGODAPECA, response.getBody().getCodigoDaPeca());
         assertEquals(NUMERODOPEDIDO, response.getBody().getNumeroDoPedido());
+        assertEquals(RESPONSAVEL, response.getBody().getResponsavel());
         assertEquals(STATUS, response.getBody().getStatus());
         assertEquals(ORDEMDEPRODUCAO, response.getBody().getOrdemDeProducao());
         assertEquals(DATAPARAFINALIZAR, response.getBody().getDataParaFinalizar());
@@ -98,6 +101,7 @@ class TodoResourceTest {
         assertEquals(DESCRICAODOPRODUTO, response.getBody().get(INDEX).getDescricaoDoProduto());
         assertEquals(CODIGODAPECA, response.getBody().get(INDEX).getCodigoDaPeca());
         assertEquals(NUMERODOPEDIDO, response.getBody().get(INDEX).getNumeroDoPedido());
+        assertEquals(RESPONSAVEL, response.getBody().get(INDEX).getResponsavel());
         assertEquals(STATUS, response.getBody().get(INDEX).getStatus());
         assertEquals(ORDEMDEPRODUCAO, response.getBody().get(INDEX).getOrdemDeProducao());
         assertEquals(DATAPARAFINALIZAR, response.getBody().get(INDEX).getDataParaFinalizar());
@@ -133,6 +137,7 @@ class TodoResourceTest {
         assertEquals(DESCRICAODOPRODUTO, response.getBody().getDescricaoDoProduto());
         assertEquals(CODIGODAPECA, response.getBody().getCodigoDaPeca());
         assertEquals(NUMERODOPEDIDO, response.getBody().getNumeroDoPedido());
+        assertEquals(RESPONSAVEL, response.getBody().getResponsavel());
         assertEquals(STATUS, response.getBody().getStatus());
         assertEquals(ORDEMDEPRODUCAO, response.getBody().getOrdemDeProducao());
         assertEquals(DATAPARAFINALIZAR, response.getBody().getDataParaFinalizar());
@@ -152,8 +157,8 @@ class TodoResourceTest {
     }
 
     private void startUser() {
-        todo = new Todo(ID, NOMEDOCLIENTE, DESCRICAODOPRODUTO, CODIGODAPECA, NUMERODOPEDIDO, STATUS, ORDEMDEPRODUCAO, DATAPARAFINALIZAR, FINALIZADO);
-        todoDto = new TodoDto(ID, NOMEDOCLIENTE, DESCRICAODOPRODUTO, CODIGODAPECA, NUMERODOPEDIDO, STATUS, ORDEMDEPRODUCAO, DATAPARAFINALIZAR, FINALIZADO);
+        todo = new Todo(ID, NOMEDOCLIENTE, DESCRICAODOPRODUTO, CODIGODAPECA, NUMERODOPEDIDO, RESPONSAVEL, STATUS, ORDEMDEPRODUCAO, DATAPARAFINALIZAR, FINALIZADO);
+        todoDto = new TodoDto(ID, NOMEDOCLIENTE, DESCRICAODOPRODUTO, CODIGODAPECA, NUMERODOPEDIDO, RESPONSAVEL, STATUS, ORDEMDEPRODUCAO, DATAPARAFINALIZAR, FINALIZADO);
     }
 
 }
