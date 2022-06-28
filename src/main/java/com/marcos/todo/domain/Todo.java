@@ -28,8 +28,8 @@ public class Todo implements Serializable {
 	private String descricaoDoProduto;
 	private Integer codigoDaPeca;
 	private Integer numeroDoPedido;
-	private String responsavel;
 	private String status;
+	private String responsavel;
 	private String ordemDeProducao;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")

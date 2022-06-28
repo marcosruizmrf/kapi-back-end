@@ -56,8 +56,8 @@ public class TodoService {
 		newObj.setDescricaoDoProduto(obj.getDescricaoDoProduto());
 		newObj.setCodigoDaPeca(obj.getCodigoDaPeca());
 		newObj.setNumeroDoPedido(obj.getNumeroDoPedido());
-		newObj.setResponsavel(obj.getResponsavel());
 		newObj.setStatus(obj.getStatus());
+		newObj.setResponsavel(obj.getResponsavel());
 		newObj.setOrdemDeProducao(obj.getOrdemDeProducao());
 		newObj.setFinalizado(obj.getFinalizado());
 		return repository.save(newObj);
